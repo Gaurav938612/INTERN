@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.nit_project.activities.GallaryActivity"
+    android:padding="0dp"
+    android:orientation="vertical">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="fill_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:id="@+id/delete_button"
+            android:src="@drawable/delete_button"
+            android:onClick="onDelete"/>
+        </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/gallary_view_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+</LinearLayout>

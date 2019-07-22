@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.nit_project">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/armed"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ClickableActivity.ThirdActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity android:name=".activities.EditableGallaryActivity" />
+        <activity android:name=".NewActivity" />
+        <activity android:name=".UploadActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".frag_5" />
+        <activity android:name=".frag_4" />
+        <activity android:name=".frag_3" />
+        <activity android:name=".activities.viewDetails" />
+        <activity android:name=".activities.AnimeActivity" />
+        <activity
+            android:name=".frag_2"
+            android:theme="@style/AppTheme.noActionbar" />
+        <activity
+            android:name=".frag_1"
+            android:label="@string/title_activity_fragment"
+            android:theme="@style/AppTheme.noActionbar" />
+        <activity
+            android:name=".fragment"
+            android:label="@string/title_activity_fragment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.AdminActivity" />
+        <activity
+            android:name=".ClickableActivity.SecondActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.GallaryActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

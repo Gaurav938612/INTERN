@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.AdminActivity">
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="ADMIN PAGE"
+       android:textSize="48dp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       android:layout_marginTop="30dp"/>
+
+   <Button
+       android:id="@+id/btn_request"
+       android:layout_width="200dp"
+       android:layout_height="50dp"
+       android:layout_marginTop="136dp"
+       android:onClick="onRequest"
+       android:text="view request list"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.497"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <Button
+       android:id="@+id/btn_block"
+       android:layout_width="200dp"
+       android:layout_height="50dp"
+       android:layout_marginTop="48dp"
+       android:onClick="onBlock"
+       android:text="view blocked list"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.497"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/btn_request" />
+
+   <Button
+       android:id="@+id/btn_approve"
+       android:layout_width="200dp"
+       android:layout_height="50dp"
+       android:layout_marginTop="8dp"
+       android:layout_marginBottom="8dp"
+       android:onClick="onApprove"
+       android:text="view approved users"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.497"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/btn_block"
+       app:layout_constraintVertical_bias="0.162" />
+
+   <Button
+       android:id="@+id/btn_blocksomeone"
+       android:layout_width="200dp"
+       android:layout_height="50dp"
+       android:layout_marginTop="8dp"
+       android:layout_marginBottom="8dp"
+       android:onClick="onBlocksomeone"
+       android:text="block a user"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.497"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/btn_block"
+       app:layout_constraintVertical_bias="0.541" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

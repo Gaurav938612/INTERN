@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_item1"
+            android:icon="@drawable/home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_item2"
+            android:icon="@drawable/ic_account_circle_black_24dp"
+            android:title="My Account" />
+        <item
+            android:id="@+id/nav_item3"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Start New Seizure"/>
+        <item
+            android:id="@+id/nav_item4"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Edit Seizure"/>
+        <item
+            android:id="@+id/nav_item6"
+            android:icon="@drawable/log_out"
+            android:title="Log Out"/>
+    </group>
+
+    <item android:title="Feedback">
+        <menu>
+            <item
+                android:id="@+id/nav_item5"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Contact us" />
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".frag_4">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/caseIdLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:padding="10dp"
+        app:errorEnabled="true"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/caseId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/caseId"
+            android:hint="Enter Case Number"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btndownloadfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="30dp"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:background="@drawable/roundbutton"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Download Files"
+        android:textColor="@color/white"
+        android:onClick="DownloadFiles"/>
+
+</LinearLayout>

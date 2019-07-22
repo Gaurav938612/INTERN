@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="405dp"
+    android:layout_height="match_parent"
+    tools:context="com.example.nit_project.frag_2">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#00BCD4"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="0dp"
+            android:orientation="horizontal">
+        <ImageView
+            android:layout_marginTop="2dp"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:src="@drawable/back_arrow"
+            android:onClick="Goback"/>
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="50dp"
+                android:padding="10dp"
+                android:text="My Account"
+                android:textColor="#111111"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarlayout_id"
+        android:layout_width="match_parent"
+        android:layout_height="229dp"
+        android:layout_marginTop="40dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar_id"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="exitUntilCollapsed"
+            app:title="account Information"
+            app:expandedTitleTextAppearance="@style/Toolbar.TitleText"
+            app:collapsedTitleTextAppearance="@style/Toolbar.TitleText">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                app:layout_collapseMode="pin" />
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="#734BB9"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+
+                <ImageView
+                    android:id="@+id/imageId"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="#E91E63"
+
+                    android:src="@drawable/ic_account_circle_black_24dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/userId"
+                        android:layout_width="150dp"
+                        android:layout_height="42dp"
+                        android:text="UserName"
+                        android:textColor="#fff"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/fullnameId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Category"
+                        android:textColor="#fff" />
+
+                    <TextView
+                        android:id="@+id/rankId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Category"
+                        android:textColor="#fff" />
+                    <TextView
+                        android:id="@+id/emailId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="email"
+                        android:textColor="#fff" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+</RelativeLayout>
