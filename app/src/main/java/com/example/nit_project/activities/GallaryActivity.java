@@ -87,6 +87,12 @@ public class GallaryActivity extends AppCompatActivity implements GallaryViewAda
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         imageView2 = findViewById(R.id.delete_button);
         imageView2.setVisibility(View.GONE);
         Intent i = getIntent();

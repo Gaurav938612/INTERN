@@ -58,10 +58,14 @@ public class ClickableAreasImage extends View implements PhotoViewAttacher.OnPho
     static float x1 = 1, x2 = 3, y1 = 4, y2 = 4;
     String image_url;
     private static Callback agent;
-    static int openlist[][]=new int[4][4];
+    static int openlist[][][]=new int[10][16][5];
+
     static String ListHeading[]=new String[10];
-    static int Listdepth[]=new int[3];
+
+    static int Listdepth[]=new int[4];
+
     static ArrayAdapter<String> ListAdapter[]=new ArrayAdapter[10];
+
     static int depth=0;
 
     public ClickableAreasImage(Context ctx) {
@@ -86,45 +90,107 @@ public class ClickableAreasImage extends View implements PhotoViewAttacher.OnPho
     }*/
 
     public void setParameters(PhotoViewAttacher attacher, OnClickableAreaClickedListener listener, View view,String image_url) {
+
         this.attacher = attacher;
+
         init(listener);
+
         this.view = view;
+
         imageView = attacher.getImageView();
+
         this.image_url=image_url;
+
         ListAdapter[0] =new ArrayAdapter<String>(ctx,
+
                 android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.devices));
+
         ListAdapter[1] =new ArrayAdapter<String>(ctx,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.names));
+
+                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.pc_laptop));
+
         ListAdapter[2] =new ArrayAdapter<String>(ctx,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.pendrives));
+
+                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.mobile));
+
         ListAdapter[3] =new ArrayAdapter<String>(ctx,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.devices));
+
+                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.camera));
+
         ListAdapter[4] =new ArrayAdapter<String>(ctx,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.names));
+
+                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.pendrives ));
+
         ListAdapter[5] =new ArrayAdapter<String>(ctx,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.pendrives));
+
+                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.condition));
+
         ListAdapter[6] =new ArrayAdapter<String>(ctx,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.devices));
-        Listdepth[0]=Listdepth[1]=0;
+
+                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.empty));
+
+        Listdepth[0]=Listdepth[1]=Listdepth[2]=0;
+
         ListHeading[0]="Device";
-        ListHeading[1]="company";
-        ListHeading[2]="pendrive ";
-        ListHeading[3]="Device";
-        ListHeading[4]="company";
-        ListHeading[5]="pendrive company";
-        ListHeading[6]="Device";
-        for(int i=0;i<4;i++)
+
+        ListHeading[1]=ListHeading[2]=ListHeading[3]=ListHeading[4]="Company";
+
+        ListHeading[5]="Condition";
+
+        for(int i=0;i<10;i++)
+
         {
-            for(int j=0;j<4;j++)
-                openlist[i][j]=-1;
+
+            for(int j=0;j<16;j++){
+
+                for(int f=0;f<5;f++)
+
+                    openlist[i][j][f]=6;
+
+            }
+
         }
-        openlist[0][0]=0;
-        openlist[1][0]=1;
-        openlist[2][0]=2;
-        openlist[3][0]=3;
-        openlist[1][1]=4;
-        openlist[1][2]=5;
-        openlist[3][1]=6;
+
+        openlist[0][0][0]=0;
+
+        openlist[1][0][0]=1;
+
+        openlist[2][0][0]=1;
+
+        openlist[3][0][0]=2;
+
+        openlist[4][0][0]=3;
+
+        openlist[6][0][0]=4;
+
+        for(int i=1;i<15;i++) {
+
+            openlist[1][i][0] = 5;
+
+            openlist[2][i][0]=5;
+
+        }
+
+        for(int i=1;i<7;i++) {
+
+            openlist[3][i][0] = 5;
+
+        }
+
+        for(int i=1;i<4;i++) {
+
+            openlist[4][i][0] = 5;
+
+            for(int j=1;j<5;j++) {
+
+                openlist[4][i][j] = 6;
+
+            }
+
+        }
+
+
+
     }
     public void init(OnClickableAreaClickedListener listener) {
         this.listener = listener;
@@ -134,11 +200,16 @@ public class ClickableAreasImage extends View implements PhotoViewAttacher.OnPho
     }
 
     private void getImageDimensions(ImageView imageView) {
-       if(!decider) {
+       /*if(!decider) {
            BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
            imageWidthInPx = (int) (drawable.getBitmap().getWidth() / Resources.getSystem().getDisplayMetrics().density);
            imageHeightInPx = (int) (drawable.getBitmap().getHeight() / Resources.getSystem().getDisplayMetrics().density);
-       }
+       }*/
+        BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+        imageWidthInPx=300;
+        imageHeightInPx=300;
+        //imageWidthInPx = (int) (drawable.getBitmap().getWidth() / Resources.getSystem().getDisplayMetrics().density);
+        //imageHeightInPx = (int) (drawable.getBitmap().getHeight() / Resources.getSystem().getDisplayMetrics().density);
     }
 
     @Override
@@ -178,15 +249,12 @@ public class ClickableAreasImage extends View implements PhotoViewAttacher.OnPho
             if (MODE.equals("VIEW") || ACTION.equals("MARK"))
             {
                 if(MODE.equals(("VIEW"))) {
-                    //Log.d(TAG,"onPhototap called");
                     PixelPosition pixel = ImageUtils.getPixelPosition(locate.x, locate.y, imageWidthInPx, imageHeightInPx);
-                    Log.d(TAG,"mode view x ="+pixel.getX()+"  y="+pixel.getY()+" x="+event.getX());
-                    Log.d(TAG,"locate x ="+locate.x+"  y="+locate.y+" Y="+event.getY());
-                    //List<ClickableArea> clickableAreas =getClickAbleAreas(view, pixel.getX(), pixel.getY());
-                    Log.d(TAG,"test element passed");
                     for (ClickableArea ca : clickableAreas) {
                         // listener.onClickableAreaTouched(ca.getItem(), ca);
                      //   tempfunc(ca.getItem(), ca);
+                        Log.d(TAG,"get index is :"+ca.getIndex());
+                        Log.d(TAG,"get image uri is :"+agent.GiveMeImageUrl());
                         if(ca.getIndex().equals(agent.GiveMeImageUrl())) {
                             Log.d(TAG,"no error in filepath");
                             Log.d(TAG,"ca.getx "+ca.getX()+" ca.getw "+ca.getW()+" original "+pixel.getX()+"ca.gety "+ca.getY()+"ca.getH "+ca.getH()+" original y "+pixel.getY());
@@ -251,76 +319,153 @@ public class ClickableAreasImage extends View implements PhotoViewAttacher.OnPho
     }*/
 
     public void createdialog() {
+
         if (MODE.equals("EDIT")) {
+
             Log.d(TAG, " x mode is " + this.MODE + "  action is " + this.ACTION);
+
             final EditText e = new EditText(this.view.getContext());
+
             final Spinner spinner=new Spinner(ctx);
+
             int k=Listdepth[0];
+
             int l=Listdepth[1];
+
+            int m=Listdepth[2];
+
             Log.d(TAG,k+" "+l+" "+depth);
-            spinner.setAdapter(ListAdapter[openlist[k][l]]);
+
+            spinner.setAdapter(ListAdapter[openlist[k][l][m]]);
+
             LinearLayout ll=new LinearLayout(ctx);
+
             ll.setOrientation(LinearLayout.VERTICAL);
+
             ll.addView(spinner);
+
             ll.addView(e);
+
             e.setText("");
+
             e.append(string_info);
+
             final AlertDialog.Builder builder = new AlertDialog.Builder(this.view.getContext());
+
             builder.setTitle("Add Information");
+
             builder.setView(ll);
+
             builder.setCancelable(false);
+
             builder.setIcon(R.mipmap.ic_launcher);
+
             builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+
                 @Override
+
                 public void onClick(DialogInterface dialogInterface, int i) {
+
                     String s = e.getText().toString();
+
                     settemp(s);
+
                     resetvalues();
-                }
-            });
-             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    resetvalues();
-                }
-            });
-            final AlertDialog alert = builder.create();
-            alert.getWindow().getAttributes().verticalMargin = 0.3F;
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    if(i!=0){
-                        alert.dismiss();
-                        int k1=Listdepth[0];
-                        int l1=Listdepth[1];
-                        String heading=ListHeading[openlist[k1][l1]];
-                         string_info = e.getText().toString();
-                        string_info=string_info+heading+" : "+adapterView.getSelectedItem().toString()+"\n";
-                        e.setText("");
-                        e.append(string_info);
-                        Log.d(TAG,string_info);
-                        Listdepth[depth]=i;
-                        depth++;
-                        k1=Listdepth[0];
-                        l1=Listdepth[1];
-                        if(openlist[k1][l1]!=-1){
-                        spinner.setAdapter(ListAdapter[openlist[k1][l1]]);}
-                        else spinner.setAdapter(new ArrayAdapter<String>(ctx,
-                                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.empty)));
-                        alert.show();
-                    }
-                    //else
-                      //  Toast.makeText(ctx,"Make valid selection",Toast.LENGTH_SHORT).show();
-                }
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
 
                 }
+
             });
+
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+                @Override
+
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                    dialogInterface.cancel();
+
+                    resetvalues();
+
+                }
+
+            });
+
+            final AlertDialog alert = builder.create();
+
+            alert.getWindow().getAttributes().verticalMargin = 0.3F;
+
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                @Override
+
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    if(i!=0){
+
+                        alert.dismiss();
+
+                        int k1=Listdepth[0];
+
+                        int l1=Listdepth[1];
+
+                        int m1=Listdepth[2];
+
+                        String heading=ListHeading[openlist[k1][l1][m1]];
+
+                        string_info = e.getText().toString();
+
+                        String comp=adapterView.getSelectedItem().toString();
+
+                        if(!comp.equals("Other")){
+
+                            string_info=string_info+heading+" : "+comp+"\n";}
+
+                        e.setText("");
+
+                        e.append(string_info);
+
+                        Log.d(TAG,string_info);
+
+                        Listdepth[depth]=i;
+
+                        k1=Listdepth[0];
+
+                        l1=Listdepth[1];
+
+                        m1=Listdepth[2];
+
+                        Log.d(TAG,"1st "+k1+" 2nd "+l1+" 3nd "+m1+ " depth "+depth);
+
+                        depth++;
+
+                        spinner.setAdapter(ListAdapter[openlist[k1][l1][m1]]);
+
+                        alert.show();
+
+                    }
+
+                    //else
+
+                    //  Toast.makeText(ctx,"Make valid selection",Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+
+
+                }
+
+
+            });
+
             alert.show();
             ACTION = "ZOOM";
+
         }
+
     }
     private void resetvalues()
     {
@@ -380,7 +525,7 @@ public class ClickableAreasImage extends View implements PhotoViewAttacher.OnPho
         return null;
     }
 
-    public class LocationXY implements Serializable {
+    public class LocationXY  {
         float x;
         float y;
         float R_width;

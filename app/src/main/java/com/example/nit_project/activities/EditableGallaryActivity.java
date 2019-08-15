@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 
+import com.example.nit_project.ClickableActivity.ClickableAreasImage;
 import com.example.nit_project.R;
 import com.example.nit_project.adapters.GallaryViewAdapter;
 import com.example.nit_project.adapters.GallaryViewAdapter2;
@@ -76,8 +77,13 @@ public class EditableGallaryActivity extends AppCompatActivity {
         myrv.setDrawingCacheEnabled(true);
         myrv.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         myAdapter = new GallaryViewAdapter2(EditableGallaryActivity.this, lstImageinfo,jsonArray2);
-       // myAdapter.setListener(EditableGallaryActivity.this);
         myrv.setAdapter(myAdapter);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        ClickableAreasImage.clickableAreas.clear();
+        finish();
     }
 }

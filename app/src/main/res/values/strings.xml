@@ -1,60 +1,185 @@
 <resources>
+
     <string name="app_name">SSFR</string>
+
     <string name="btnTakePicture">Capture Image</string>
+
     <string name="btnRecordVideo">Record Video</string>
+
     <string name="or">(or)</string>
+
     <string name="btnUploadToServer">Upload to Server</string>
+
     <string name="title_activity_fragment">Search And Seizure</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
+
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
     <string name="nav_header_title">Android Studio</string>
+
     <string name="nav_header_subtitle">android.studio@android.com</string>
+
     <string name="nav_header_desc">Navigation header</string>
+
     <string name="action_settings">Settings</string>
 
+
+
     <string name="menu_home">Home</string>
+
     <string name="menu_gallery">Gallery</string>
+
     <string name="menu_slideshow">Slideshow</string>
+
     <string name="menu_tools">Tools</string>
+
     <string name="menu_share">Share</string>
+
     <string name="menu_send">Send</string>
+
     <string name="title_activity_scrolling">ScrollingActivity</string>
-    <string-array name="names">
-        <item>Del</item>
-        <item>Acer</item>
-        <item>Samsung</item>
-        <item>hp</item>
-        <item>Laenevo</item>
-        <item>sony</item>
-        <item>micromax</item>
-        <item>LG</item>
-        <item>apple</item>
-        <item>Vivo</item>
-        <item>Oppo</item>
-        <item>Philips</item>
-        <item>Redmi</item>
-        <item>Realme</item>
-    </string-array>
+
+
+
     <string-array name="devices">
+
         <item>Select</item>
+
         <item>PC</item>
+
         <item>Laptop</item>
+
         <item>Mobile</item>
+
         <item>Camera</item>
+
         <item>CD</item>
+
         <item>Pen Drive</item>
+
         <item>Other</item>
+
     </string-array>
-    <string-array name="pendrives">
+
+
+
+    <string-array name="pc_laptop">
+
         <item>Select</item>
-        <item>sandisk</item>
+
+        <item>Del</item>
+
+        <item>Acer</item>
+
         <item>Samsung</item>
-        <item>Micromax</item>
+
+        <item>hp</item>
+
+        <item>Laenevo</item>
+
+        <item>sony</item>
+
+        <item>micromax</item>
+
+        <item>LG</item>
+
+        <item>apple</item>
+
+        <item>Vivo</item>
+
+        <item>Oppo</item>
+
+        <item>Philips</item>
+
+        <item>Redmi</item>
+
+        <item>Realme</item>
+
         <item>Other</item>
+
     </string-array>
-    <string-array name="empty">
+
+
+
+    <string-array name="camera">
+
         <item>Select</item>
+
+        <item>Canon</item>
+
+        <item>Nikon</item>
+
+        <item>Sony</item>
+
+        <item>Panasonic</item>
+
+        <item>Other</item>
+
     </string-array>
+
+
+
+    <string-array name="mobile">
+
+        <item>Select</item>
+
+        <item>Samsung</item>
+
+        <item>Apple</item>
+
+        <item>MI</item>
+
+        <item>Oppo</item>
+
+        <item>Vivo</item>
+
+        <item>Nokia</item>
+
+        <item>Other</item>
+
+    </string-array>
+
+
+
+    <string-array name="pendrives">
+
+        <item>Select</item>
+
+        <item>sandisk</item>
+
+        <item>Samsung</item>
+
+        <item>Micromax</item>
+
+        <item>Other</item>
+
+    </string-array>
+
+
+
+    <string-array name="condition">
+
+        <item>Select</item>
+
+        <item>Damaged</item>
+
+        <item>Working</item>
+
+        <item>Other</item>
+
+    </string-array>
+
+
+
+    <string-array name="empty">
+
+        <item>Select</item>
+
+    </string-array>
+
+
+
 
 
 </resources>
