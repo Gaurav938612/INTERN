@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,11 +28,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
-//import android.support.annotation.NonNull;
-//import android.support.v4.app.ActivityCompat;
-// import android.support.v7.app.AppCompatActivity;
-
 
 public class NewActivity extends AppCompatActivity {
     private Button button;
@@ -95,6 +91,8 @@ public class NewActivity extends AppCompatActivity {
 
             progress = new ProgressDialog(NewActivity.this);
             progress.setTitle("Uploading");
+            progress.setCanceledOnTouchOutside(false);
+            progress.setCancelable(false);
             progress.setMessage("Please wait...");
             progress.show();
 
@@ -128,20 +126,21 @@ public class NewActivity extends AppCompatActivity {
 
                     try {
                         Response response = client.newCall(request).execute();
-
+                        progress.dismiss();
                         if (!response.isSuccessful()) {
-
+                            Toast.makeText(NewActivity.this,"File upload failed ..Try again",Toast.LENGTH_SHORT).show();
                             throw new IOException("Error : " + response);
 
                         }
+                        else{
+                            Toast.makeText(NewActivity.this," files Uploaded successfully",Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
 
-                         progress.dismiss();
 
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
-
                 }
             });
 

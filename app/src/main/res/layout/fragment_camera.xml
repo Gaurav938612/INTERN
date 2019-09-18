@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".camera.CameraFragment"
+    android:background="#000"
+    android:orientation="vertical">
+
+
+    <com.example.nit_project.camera.AutoFitTextureView
+        android:id="@+id/mTextureView"
+        android:layout_width="match_parent"
+        android:layout_height="517dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+        <ImageView
+            android:id="@+id/mRecordVideo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="160dp"
+            android:contentDescription="@string/play_stop"
+            android:visibility="visible"
+            android:src="@drawable/ic_record"/>
+        <Button
+            android:id="@+id/mReset"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/round_layout"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:layout_marginLeft="180dp"
+            android:visibility="gone"
+            android:textSize="20dp"
+            android:textColor="#000"
+            android:layout_marginTop="15dp"
+            android:text="cancel"/>
+        <Button
+            android:id="@+id/mOk"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:background="@drawable/round_layout"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:textColor="#000"
+            android:layout_marginTop="15dp"
+            android:visibility="gone"
+            android:text="OK"/>
+
+    </LinearLayout>
+    <VideoView
+        android:id="@+id/mVideoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+</LinearLayout>

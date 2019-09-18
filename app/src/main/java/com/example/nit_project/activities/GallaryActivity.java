@@ -103,6 +103,7 @@ public class GallaryActivity extends AppCompatActivity implements GallaryViewAda
         if (filepath == null) {
             Toast.makeText(GallaryActivity.this, "Some files are missing or have been deleted ", Toast.LENGTH_SHORT).show();
         }
+        Log.d(TAG,"video file path is : "+filepath);
         newFile = compressImage(filepath);
         lstImageinfo = new ArrayList<>();
         count++;

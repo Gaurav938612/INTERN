@@ -19,7 +19,7 @@
         <item
             android:id="@+id/nav_item4"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Edit Seizure"/>
+            android:title="View Seizure"/>
         <item
             android:id="@+id/nav_item6"
             android:icon="@drawable/log_out"

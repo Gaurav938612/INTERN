@@ -5,10 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.media.ExifInterface;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -23,42 +20,32 @@ import android.widget.VideoView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.nit_project.ClickableActivity.SecondActivity;
-import com.example.nit_project.ClickableActivity.ThirdActivity;
-import com.example.nit_project.Config;
 import com.example.nit_project.R;
-import com.example.nit_project.activities.ImageInfo;
-
-import org.json.JSONArray;
+import com.example.nit_project.activities.VideoInfo;
+import com.example.nit_project.camera.VideoPlayer;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
-public class GallaryViewAdapter2 extends RecyclerView.Adapter<GallaryViewAdapter2.MyViewHolder> {
+public class VideoViewAdapter extends RecyclerView.Adapter<VideoViewAdapter.MyViewHolder> {
 
     private String filepath;
     private Context mContext;
-    private List<ImageInfo> mData;
+    private List<VideoInfo> mData;
     public ArrayList<Integer> selected;
     public String mode = "view";
     public int item_selected = 0;
     private Callback listener;
-    public JSONArray jsonArray=null;
 
 
-    public GallaryViewAdapter2(Context mContext, List<ImageInfo> mData,JSONArray k) {
+    public VideoViewAdapter(Context mContext, List<VideoInfo> mData) {
         this.mContext = mContext;
         this.mData = mData;
-        this.jsonArray=k;
     }
 
     public void setListener(Callback listener) {
@@ -81,32 +68,27 @@ public class GallaryViewAdapter2 extends RecyclerView.Adapter<GallaryViewAdapter
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams((ViewGroup.LayoutParams.MATCH_PARENT), (ViewGroup.LayoutParams.MATCH_PARENT) - 550);
         holder.cardView_id.setLayoutParams(params);
 
-        if (mData.get(position).getIsImage()) {
-
             holder.img_title.setText(mData.get(position).getTitle());
 
             int imageWidth = holder.img_id.getMaxWidth();
             int imageHeight = holder.img_id.getMaxHeight();
 
+            BitmapFactory.Options options=new BitmapFactory.Options();
+            options.inJustDecodeBounds=true;
 
-            RequestOptions requestOptions= new RequestOptions().centerCrop().placeholder(R.drawable.loading_shape).error(R.drawable.loading_shape);
-            //setting image
-            String image_url= Config.DB_URL+"AndroidFileUpload/uploads/"+mData.get(position).getFilepath();
-
-            Glide.with(mContext).load(image_url).apply(requestOptions).into(holder.img_id);
-           // holder.img_id.setImageBitmap(bitmap);
+            Bitmap bitmap= ThumbnailUtils.createVideoThumbnail(filepath,0);
+            //bitmap=getResizedBitmap(bitmap,imageWidth,imageHeight);
+            holder.img_id.setImageBitmap(bitmap);
             holder.checked_button.setVisibility(View.GONE);
-        }
 
         holder.cardView_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mode.equals("view")) {
-                    Intent intent = new Intent(mContext, ThirdActivity.class);
+                    Intent intent = new Intent(mContext, VideoPlayer.class);
 
 
-                    intent.putExtra("json_array",jsonArray.toString());
-                    intent.putExtra("image_url",mData.get(position).getFilepath());
+                    intent.putExtra("filepath", mData.get(position).getFilepath());
                     // start the activity
                     mContext.startActivity(intent);
                 } else {
@@ -127,7 +109,25 @@ public class GallaryViewAdapter2 extends RecyclerView.Adapter<GallaryViewAdapter
                 }
             }
         });
-
+        holder.cardView_id.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (mode.equals("view")) {
+                    item_selected = 0;
+                    mode = "delete";
+                    selected = new ArrayList<>();
+                    selected.add(position);
+                    item_selected++;
+                    holder.checked_button.setVisibility(View.VISIBLE);
+                    listener.onAddClick();
+                } else {
+                    holder.checked_button.setVisibility(View.VISIBLE);
+                    item_selected++;
+                    selected.add(position);
+                }
+                return true;
+            }
+        });
     }
 
     @Override
@@ -159,6 +159,64 @@ public class GallaryViewAdapter2 extends RecyclerView.Adapter<GallaryViewAdapter
 
         public void onCancelClick();
     }
+
+    private static Bitmap getResizedBitmap(Bitmap bitmap, float maxWidth, float maxHeight) {
+
+        float width = bitmap.getWidth();
+        float height = bitmap.getHeight();
+        if (width > maxWidth) {
+            height = (maxWidth / width) * height;
+            width = maxWidth;
+        }
+        if (height > maxHeight) {
+            width = (maxHeight / height) * width;
+            height = maxHeight;
+        }
+        Log.e(TAG, "width : " + width + "height : " + height);
+        return Bitmap.createScaledBitmap(bitmap, (int) width, (int) height, true);
+
+    }
+
+    public Bitmap decodeFile(String pathName) {
+        Bitmap bitmap = null;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        for (options.inSampleSize =1; options.inSampleSize <= 32; options.inSampleSize++) {
+            try {
+                bitmap = BitmapFactory.decodeFile(pathName, options);
+                Log.d(TAG, "Decoded successfully for sampleSize " + options.inSampleSize);
+                break;
+            } catch (OutOfMemoryError outOfMemoryError) {
+                Log.e(TAG, "outOfMemoryError while reading file for sampleSize " + options.inSampleSize
+                        + " retrying with higher value");
+            }
+        }
+        return bitmap;
+    }
+
+
+    //give file new file path
+    public String getFilename() {
+        File file = new File(Environment.getExternalStorageDirectory().getPath(), "MyFolder/Images");
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        String uriSting = (file.getAbsolutePath() + "/" + System.currentTimeMillis() + ".jpg");
+        return uriSting;
+
+    }
+    private String getRealPathFromURI(String contentURI) {
+        Uri contentUri = Uri.parse(contentURI);
+        Cursor cursor = mContext.getContentResolver().query(contentUri, null, null, null, null);
+        if (cursor == null) {
+            return contentUri.getPath();
+        } else {
+            cursor.moveToFirst();
+            int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            return cursor.getString(index);
+        }
+    }
+
+
 
 
 }

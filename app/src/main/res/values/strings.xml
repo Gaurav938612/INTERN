@@ -25,7 +25,6 @@
     <string name="action_settings">Settings</string>
 
 
-
     <string name="menu_home">Home</string>
 
     <string name="menu_gallery">Gallery</string>
@@ -39,7 +38,14 @@
     <string name="menu_send">Send</string>
 
     <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="permission_request">This app needs permission for camera and audio recording.</string>
+    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+    <string name="message_need_permission">Need Permissions</string>
+    <string name="message_permission">This app needs permission to use this feature. You can grant them in app settings.</string>
+    <string name="title_go_to_setting">GOTO SETTINGS</string>
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="play_stop">Play or Stop</string>
 
 
     <string-array name="devices">
@@ -61,7 +67,6 @@
         <item>Other</item>
 
     </string-array>
-
 
 
     <string-array name="pc_laptop">
@@ -101,7 +106,6 @@
     </string-array>
 
 
-
     <string-array name="camera">
 
         <item>Select</item>
@@ -117,7 +121,6 @@
         <item>Other</item>
 
     </string-array>
-
 
 
     <string-array name="mobile">
@@ -141,7 +144,6 @@
     </string-array>
 
 
-
     <string-array name="pendrives">
 
         <item>Select</item>
@@ -157,7 +159,6 @@
     </string-array>
 
 
-
     <string-array name="condition">
 
         <item>Select</item>
@@ -171,15 +172,12 @@
     </string-array>
 
 
-
     <string-array name="empty">
 
         <item>Select</item>
 
     </string-array>
-
-
-
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>

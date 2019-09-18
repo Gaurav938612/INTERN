@@ -4,8 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+
+import com.example.nit_project.activities.MapsActivity;
 
 import android.view.View;
 
@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class fragment extends AppCompatActivity
@@ -43,12 +44,19 @@ public class fragment extends AppCompatActivity
         setContentView(R.layout.activity_fragment);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });*/
+        ImageView imageView=findViewById(R.id.locationId);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(fragment.this, MapsActivity.class));
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -86,7 +94,6 @@ public class fragment extends AppCompatActivity
                     });
             AlertDialog alert = builder.create();
             alert.show();
-
         }
     }
 
@@ -111,7 +118,6 @@ public class fragment extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -122,14 +128,14 @@ public class fragment extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_item1) {
-           Intent intent=new Intent(fragment.this,frag_1.class);
-           startActivity(intent);
+           //Intent intent=new Intent(fragment.this,fragment.class);
+           //startActivity(intent);
         } else if (id == R.id.nav_item2) {
             String type="displayProfile";
             ProfileDisplayer profileDisplayer=new ProfileDisplayer(this);
             profileDisplayer.execute(type,username);
            // profileDisplayer.display();
-           // Intent intent=new Intent(fragment.this,frag_2.class);
+           // Intent inte/nt=new Intent(fragment.this,frag_2.class);
             //startActivity(intent);
 
         } else if (id == R.id.nav_item3) {
@@ -149,7 +155,6 @@ public class fragment extends AppCompatActivity
             intent.putExtra("exit",false);
             startActivity(intent);
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
