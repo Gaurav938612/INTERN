@@ -15,7 +15,6 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
-        android:allowBackup="true"
         android:icon="@drawable/armed"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"

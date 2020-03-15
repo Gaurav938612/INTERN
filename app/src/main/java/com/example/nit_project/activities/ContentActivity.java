@@ -222,6 +222,7 @@ public class ContentActivity extends Activity {
 
         // External sdcard location
         File mediaStorageDir = new File(
+
                 Environment
                         .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
                 Config.IMAGE_DIRECTORY_NAME);

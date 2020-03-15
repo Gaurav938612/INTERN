@@ -79,14 +79,6 @@ public class ClickableAreasImage extends View implements PhotoViewAttacher.OnPho
         Log.d(TAG, "context Area");
     }
 
-    /*public ClickableAreasImage(PhotoViewAttacher attacher, OnClickableAreaClickedListener listener, View view) {
-        super(view.getContext());
-        this.attacher = attacher;
-        init(listener);
-        this.view = view;
-        imageView = attacher.getImageView();
-
-    }*/
 
     public void setParameters(PhotoViewAttacher attacher, OnClickableAreaClickedListener listener, View view,String image_url) {
 
@@ -175,7 +167,6 @@ public class ClickableAreasImage extends View implements PhotoViewAttacher.OnPho
             openlist[3][i][0] = 5;
 
         }
-
         for(int i=1;i<4;i++) {
 
             openlist[4][i][0] = 5;
@@ -199,11 +190,7 @@ public class ClickableAreasImage extends View implements PhotoViewAttacher.OnPho
     }
 
     private void getImageDimensions(ImageView imageView) {
-       /*if(!decider) {
-           BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
-           imageWidthInPx = (int) (drawable.getBitmap().getWidth() / Resources.getSystem().getDisplayMetrics().density);
-           imageHeightInPx = (int) (drawable.getBitmap().getHeight() / Resources.getSystem().getDisplayMetrics().density);
-       }*/
+
         BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
         imageWidthInPx=300;
         imageHeightInPx=300;
@@ -290,32 +277,6 @@ public class ClickableAreasImage extends View implements PhotoViewAttacher.OnPho
     }
 
 
-    /*private List<ClickableArea> getClickAbleAreas(final View view, int x, int y) {
-        List<ClickableArea> clickableAreas = new ArrayList<>();
-        try {
-            for (ClickableArea ca : getClickableAreas()) {
-                if (isBetween(ca.getX(), ca.getW(), x)) {
-                    if (isBetween(ca.getY(), ca.getH(), y)) {
-                        clickableAreas.add(ca);
-                        xval = ca.getX();
-                        yval = ca.getY();
-                        mX = ca.getX();
-                        mY = ca.getY();
-                        projectedX = ca.getW();
-                        projectedY = ca.getH();
-                        break;
-                    }
-                }
-
-            }
-        } catch (NullPointerException e) {
-            //nothing to be done in exception
-            Toast.makeText(view.getContext(), "no item right now", Toast.LENGTH_SHORT).show();
-        }
-        createdialog();
-
-        return clickableAreas;
-    }*/
 
     public void createdialog() {
 
